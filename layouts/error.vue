@@ -11,7 +11,7 @@
     <nuxt-link class="button"
                to="/"
                v-if="error.statusCode === 404">
-      Homepage
+      tt123
     </nuxt-link>
   </section>
 </template>
