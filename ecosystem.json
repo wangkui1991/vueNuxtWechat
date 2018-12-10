@@ -1,0 +1,27 @@
+{
+  "apps": [{
+    "name": "iceAndFire",
+    "script": "server.js",
+    "env": {
+      "COMMON_VARIABLE": "true"
+    },
+    "env_production": {
+      "NODE_ENV": "production"
+    }
+  }],
+  "deploy": {
+    "production": {
+      "user": "root",
+      "host": ["47.97.160.105"],
+      "port": "22",
+      "ref": "origin/master",
+      "repo": "git@gitee.com:smallDada/vueNuxt.git",
+      "path": "/home/vueNuxt/production",
+      "ssh_options": "StrictHostKeyChecking=no",
+      "pre-deploy-local": "echo 'Deploy Done!'",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  }
+}
