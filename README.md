@@ -8,7 +8,7 @@
 # install dependencies
 $ npm install # Or yarn install*[see note below]
 
-# serve with hot reload at localhost:3000
+# serve with hot reload at localhost:80
 $ npm run dev
 
 # build for production and launch server
