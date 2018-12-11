@@ -18,7 +18,7 @@
       "repo": "git@gitee.com:smallDada/vueNuxt.git",
       "path": "/home/vueNuxt/production",
       "ssh_options": "StrictHostKeyChecking=no",
-      "post-deploy": "git pull origin master&&pm2 startOrRestart iceAndFire",
+      "post-deploy": "git pull origin master",
       "pre-deploy-local": "echo 'Deploy Done!'",
       "env": {
         "NODE_ENV": "production"
