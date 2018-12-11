@@ -1,19 +1,14 @@
 import Koa from 'koa'
-import {
-  Nuxt,
-  Builder
-} from 'nuxt'
+import { Nuxt, Builder } from 'nuxt'
 import R from 'ramda'
-import {
-  resolve
-} from 'path'
+import { resolve } from 'path'
 
 let config = require('../nuxt.config.js')
 config.dev = !(process.env === 'production')
 
 const r = path => resolve(__dirname, path)
 const host = process.env.HOST || '127.0.0.1'
-const port = process.env.PORT || 80
+const port = process.env.PORT || 3006
 const MIDDLEWARES = ['router']
 class Server {
   constructor () {
@@ -21,11 +16,13 @@ class Server {
     this.useMiddleWares(this.app)(MIDDLEWARES)
   }
   useMiddleWares (app) {
-    return R.map(R.compose(
-      R.map(i => i(app)),
-      require,
-      i => `${r('./middlewares')}/${i}`
-    ))
+    return R.map(
+      R.compose(
+        R.map(i => i(app)),
+        require,
+        i => `${r('./middlewares')}/${i}`
+      )
+    )
   }
   async start () {
     const nuxt = new Nuxt(config)
