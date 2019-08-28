@@ -18,7 +18,7 @@ export default function (opts, reply) {
       if (sha === signature) {
         ctx.body = echostr
       } else {
-        ctx.body = 'Failed'
+        ctx.body = '接口通了，但不是微信服务器发过来的'
       }
     } else if (ctx.method === 'POST') {
       if (sha !== signature) {
