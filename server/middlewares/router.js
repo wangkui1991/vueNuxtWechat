@@ -4,6 +4,8 @@ import config from '../config'
 import wechatMiddle from '../wechat-lib/middleware'
 import { resolve } from 'path'
 
+import {signature} from '../controllers/wechat'
+
 export const router = app => {
   const router = new Router()
 
@@ -13,10 +15,30 @@ export const router = app => {
     let mp = require('../wechat')
     let client = mp.getWechat()
 
+    // const news = {
+    //   articles: [
+    //     {
+    //       title: 'ssr',
+    //       'thumb_media_id': '图文id',
+    //       'author': 'kuiwang',
+    //       'digest': '摘要',
+    //       'show_cover_pic': 1,
+    //       'content': '没有内容',
+    //       'content_source_url': '跳转地址',
+    //       'need_open_comment': 1,
+    //       'only_fans_can_comment': 1
+    //     }
+    //   ]
+    // }
+    // const permanentVideo = {
+    //   type: 'video',
+    //   description: '{{"title":"haha","introduction":"heihei"}}'
+    // }
+
     const data = await client.handle('uploadMaterial', 'image', resolve(__dirname, '../../ice.jpg'), { type: 'image' })
     console.log('5', data)
   })
-
+  router.get('/wechat-signature', signature)
   app.use(router.routes())
   app.use(router.allowedMethods())
 }

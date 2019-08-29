@@ -1,6 +1,9 @@
 const tip = '历史变迁中的激流勇进\n' +
   '战斗吧  英雄 <a href="http://coding.imooc.com">一起搞事情</a>'
 
+let mp = require('../wechat')
+let client = mp.getWechat()
+let menu = require('./menu').default
 export default async (ctx, next) => {
   const message = ctx.weixin
   console.log(message)
@@ -11,9 +14,18 @@ export default async (ctx, next) => {
       console.log('取关了')
     } else if (message.Event === 'LOCATION') {
       ctx.body = message.Latitude + ':' + message.Longitude
+    } else if (message.Event === 'view') {
+      ctx.body = message.EventKey + message.MenuId
+    } else if (message.Event === 'pic_sysphoto') {
+      ctx.body = message.Count + 'photo sent'
     }
   } else if (message.MsgType === 'text') {
-    ctx.body = message.Content
+    let data = message.Content
+    if (message.Content === '1') {
+      data = await client.handle('createMenu', menu)
+      console.log(data)
+    }
+    ctx.body = data
   } else if (message.MsgType === 'image') {
     ctx.body = {
       type: 'image',
