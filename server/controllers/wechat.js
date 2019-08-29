@@ -1,4 +1,7 @@
 import * as api from '../api'
+import config from '../config'
+import { parse as urlParse } from 'url'
+import { parse as queryParse } from 'querystring'
 
 export async function signature (ctx, next) {
   let url = ctx.query.url
@@ -10,5 +13,33 @@ export async function signature (ctx, next) {
   ctx.body = {
     success: true,
     params: params
+  }
+}
+
+export async function redirect (ctx, next) {
+  const target = config.SITE_ROOT_URL + '/oauth'
+  const scope = 'snsapi_userinfo'
+  const {a, b} = ctx.query
+  const params = `${a}_${b}`
+  const url = api.getAuthorizeURL(scope, target, params)
+
+  console.log('url', url)
+  ctx.redirect(url)
+}
+
+export async function oauth (ctx, next) {
+  let url = ctx.query.url
+  url = decodeURIComponent(url)
+  const urlObj = urlParse(url)
+  const params = queryParse(urlObj.query)
+  const code = params.code
+  console.log(code)
+  const user = await api.getUserByCode(code)
+
+  console.log(user)
+
+  ctx.body = {
+    success: true,
+    data: user
   }
 }

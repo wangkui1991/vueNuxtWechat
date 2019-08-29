@@ -9,6 +9,9 @@ const wechat = {
   actions: {
     getWechatSignature ({commit}, url) {
       return Service.getWechatSignature(url)
+    },
+    getUserByOAuth ({commit}, url) {
+      return Service.getUserByOAuth(url)
     }
   }
 }

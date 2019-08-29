@@ -4,7 +4,7 @@ import config from '../config'
 import wechatMiddle from '../wechat-lib/middleware'
 import { resolve } from 'path'
 
-import {signature} from '../controllers/wechat'
+import {signature, redirect, oauth} from '../controllers/wechat'
 
 export const router = app => {
   const router = new Router()
@@ -39,6 +39,8 @@ export const router = app => {
     console.log('5', data)
   })
   router.get('/wechat-signature', signature)
+  router.get('/wechat-redirect', redirect)
+  router.get('/wechat-oauth', oauth)
   app.use(router.routes())
   app.use(router.allowedMethods())
 }
