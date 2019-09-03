@@ -5,7 +5,8 @@ const vuessr = {
     return {
       houses: [],
       characters: [],
-      cities: []
+      cities: [],
+      focusHouse: {}
     }
   },
   getters: {},
@@ -18,6 +19,9 @@ const vuessr = {
     },
     SET_CITIES: (state, cities) => {
       state.cities = cities
+    },
+    SET_FOCUS_HOUSE: (state, data) => {
+      state.focusHouse = data
     }
   },
   actions: {
@@ -36,6 +40,16 @@ const vuessr = {
     async fetchCities ({commit}) {
       const res = await Service.fetchCities()
       commit('SET_CITIES', res.data.data)
+      return res
+    },
+
+    async focusHouse ({ state, commit }, _id) {
+      console.log(42)
+      if (_id === state.focusHouse._id) return
+      const res = await Service.focusHouse(_id)
+
+      commit('SET_FOCUS_HOUSE', res.data.data)
+      console.log('a', res.data.data)
       return res
     }
   }
