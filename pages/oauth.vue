@@ -1,4 +1,17 @@
-<template ></template>
+<template lang='pug'>
+.container
+  ul
+    li {{auth.city}}
+    li {{auth.country}}
+    li 
+      img(:src='auth.headimgurl')
+    li {{auth.language}}
+    li {{auth.nickname}}
+    li {{auth.openid}}
+    li {{auth.privilege}}
+    li {{auth.province}}
+    li {{auth.sex}}
+</template>
 <script>
 // import { mapState } from 'vuex'
 export default {
@@ -12,6 +25,11 @@ export default {
       title: 'loading'
     }
   },
+  data () {
+    return {
+      auth: {}
+    }
+  },
   beforeMount () {
     // const wx = window.wx
     const url = window.location.href
@@ -21,7 +39,7 @@ export default {
       .then(res => {
         console.log(res, res)
         if (res.data.success) {
-          console.log(res.data)
+          this.auth = res.data.data
         }
       })
   }

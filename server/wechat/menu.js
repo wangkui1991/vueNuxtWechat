@@ -1,10 +1,10 @@
 export default {
   button: [{
-    'name': '权游周边',
+    'name': '测试',
     'sub_button': [{
       'type': 'view',
-      'name': '搜索',
-      'url': 'http://www.baidu.com/'
+      'name': '网页js授权d',
+      'url': 'http://155fbe6b.ngrok.io/wechat-redirect'
 
     }, {
       'name': '手办商城',
@@ -16,9 +16,10 @@ export default {
       'key': 'photo'
     }]
   }, {
-    'name': '冰火家族',
-    'type': 'view',
-    'url': 'http://www.baidu.com/'
-
-  }]
+    'type': 'miniprogram',
+    'name': '测试',
+    'url': 'http://www.baidu.com',
+    'appid': 'wx286b93c14bbf93aa',
+    'pagepath': 'pages/lunar/index'
+  } ]
 }

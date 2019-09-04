@@ -29,11 +29,12 @@ export async function redirect (ctx, next) {
 
 export async function oauth (ctx, next) {
   let url = ctx.query.url
+  console.log('33', url)
   url = decodeURIComponent(url)
   const urlObj = urlParse(url)
   const params = queryParse(urlObj.query)
   const code = params.code
-  console.log(code)
+  console.log('code', code)
   const user = await api.getUserByCode(code)
 
   console.log(user)
