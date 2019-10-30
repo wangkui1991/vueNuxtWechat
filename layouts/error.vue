@@ -1,6 +1,6 @@
 <template lang="pug">
   .container
-    img(src="../static/img/logo.png")
+    //- img(src="~static/images/logo.png")
     h1.title {{ error.statusCode }}
     h2.info {{ error.message }}
     nuxt-link.button(to='/' v-if='error.statusCode === 404') Homepage

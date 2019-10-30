@@ -1,6 +1,6 @@
 {
   "apps": [{
-    "name": "iceAndFire",
+    "name": "wechat",
     "script": "start.js",
     "env": {
       "COMMON_VARIABLE": "true"
@@ -12,7 +12,7 @@
   "deploy": {
     "production": {
       "user": "root",
-      "host": ["47.97.160.105"],
+      "host": ["47.105.223.108"],
       "port": "22",
       "ref": "origin/master",
       "repo": "git@gitee.com:smallDada/vueNuxt.git",
