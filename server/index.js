@@ -1,14 +1,14 @@
-import Koa from 'koa';
-import { Nuxt, Builder } from 'nuxt';
-import R from 'ramda';
-import { resolve } from 'path';
+import Koa from 'koa'
+import { Nuxt, Builder } from 'nuxt'
+import R from 'ramda'
+import { resolve } from 'path'
 
 let config = require('../nuxt.config.js')
 config.dev = !(process.env === 'production')
 
 const r = path => resolve(__dirname, path)
-const host = process.env.HOST || '127.0.0.1';
-const port = process.env.PORT || 3306
+const host = process.env.HOST || '127.0.0.1'
+const port = process.env.PORT || 3006
 const MIDDLEWARES = ['database', 'router']
 class Server {
   constructor () {

@@ -4,13 +4,9 @@ import * as util from './util'
 
 export default function (opts, reply) {
   return async function wechatMiddle (ctx, next) {
+    console.log(opts, reply)
     const token = opts.token
-    const {
-      signature,
-      nonce,
-      timestamp,
-      echostr
-    } = ctx.query
+    const { signature, nonce, timestamp, echostr } = ctx.query
     const str = [token, timestamp, nonce].sort().join('')
     const sha = sha1(str)
 
