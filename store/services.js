@@ -1,6 +1,6 @@
 import axios from 'axios'
 const baseUrl = ''
-const apiUrl = 'http://47.97.160.105:9090/mock/11/ice'
+const apiUrl = 'http://47.105.223.108:9191/mock/16/ice'
 
 class Services {
   getWechatSignature (url) {
