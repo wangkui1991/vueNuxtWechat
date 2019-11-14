@@ -15,11 +15,5 @@ export default {
       'type': 'pic_sysphoto',
       'key': 'photo'
     }]
-  }, {
-    'type': 'miniprogram',
-    'name': '测试',
-    'url': 'http://www.baidu.com',
-    'appid': 'wx286b93c14bbf93aa',
-    'pagepath': 'pages/lunar/index'
   } ]
 }
