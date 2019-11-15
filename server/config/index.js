@@ -9,5 +9,5 @@ export default {
     token: 'kui',
     EncodingAESKey: 'zSOWrgtazqcluuJj5uT6eXwVwIjp1T3KIkgbkhT5DnP'
   },
-  SITE_ROOT_URL: 'http://923db3ae.ngrok.io'
+  SITE_ROOT_URL: 'http://ffd3e707.ngrok.io'
 }
