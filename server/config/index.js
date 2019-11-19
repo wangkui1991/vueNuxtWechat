@@ -9,5 +9,10 @@ export default {
     token: 'kui',
     EncodingAESKey: 'zSOWrgtazqcluuJj5uT6eXwVwIjp1T3KIkgbkhT5DnP'
   },
-  SITE_ROOT_URL: 'http://ffd3e707.ngrok.io'
+  SITE_ROOT_URL: 'http://ffd3e707.ngrok.io',
+  qiniu: {
+    AK: 'YpXiCMCIwZYfKsvhPiTImKu2lsLFSvMPER4THTDF',
+    SK: 'nknuBGCy6p1CKalyNSmw15p79Rv1hP4bXIkOM7AE',
+    bucket: 'dadafastrun'
+  }
 }
