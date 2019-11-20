@@ -1,21 +1,22 @@
 <template lang="pug">
 .container
   .focusHouse-media
-    img(v-if='house.cname' :src="house.cname ")
+    img(v-if='house.cname' :src="imageCDN + house.cname + '.jpg?imageView2/1/w/750/h/460/format/jpg/q/90|imageslim'")
     .focusHouse-text
       .words {{ house.words }}
       .name {{ house.name }}
 
   .focusHouse-body
     .focusHouse-item-title {{ house.cname }}
-    .focusHouse-item-body {{ house.intro }}
+    .focusHouse-item-body(v-for='(item, index) in house.intro' :key='index') {{item}}
 
     .focusHouse-item-title 主要角色
     .focusHouse-item-body(v-for='(item, index) in house.swornMembers' :key='index')
       .swornMembers
-        img(:src="  item.profile ")
+        img(v-if='item.character.profile.includes("http")' :src="item.character.profile")
+        img(v-else :src="imageCDN + item.character.profile + '?imageView2/1/w/280/h/440/format/jpg/q/75|imageslim' ")
         .swornMembers-body
-          .name {{ item.cname }}
+          .name {{ item.character.cname }}
           .introduction {{ item.text }}
 
     .focusHouse-item-section(v-for='(item, index) in house.sections' :key='index')
@@ -38,7 +39,8 @@ export default {
   },
   computed: {
     ...mapState({
-      house: state => state.vuessr.focusHouse
+      house: state => state.vuessr.focusHouse,
+      imageCDN: state => state.vuessr.imageCDN
     })
   },
   beforeCreate () {

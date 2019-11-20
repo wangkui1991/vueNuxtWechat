@@ -1,6 +1,6 @@
 import axios from 'axios'
 const baseUrl = ''
-const apiUrl = 'http://47.105.223.108:9191/mock/16/ice'
+// const apiUrl = 'http://47.105.223.108:9191/mock/16/ice'
 
 class Services {
   getWechatSignature (url) {
@@ -11,17 +11,20 @@ class Services {
     return axios.get(`${baseUrl}/wechat-oauth?url=${url}`)
   }
   fetchHouses () {
-    return axios.get(`${apiUrl}/home/houses`)
-  }
-  fetchCities () {
-    return axios.get(`${apiUrl}/home/city`)
-  }
-  fetchCharacters () {
-    return axios.get(`${apiUrl}/home/characters`)
+    return axios.get(`${baseUrl}/wiki/houses`)
   }
 
   focusHouse (id) {
-    return axios.get(`${apiUrl}/house/id`)
+    return axios.get(`${baseUrl}/wiki/houses/${id}`)
+  }
+  fetchCities () {
+    return { data: { data: [] }, success: true }
+  }
+  fetchCharacters () {
+    return axios.get(`${baseUrl}/wiki/characters`)
+  }
+  focusCharacter (id) {
+    return axios.get(`${baseUrl}/wiki/characters/${id}`)
   }
 }
 

@@ -7,13 +7,14 @@
         .cname {{ item.name }}
         .name {{ item.cname }}
       .house-img-wrapper
-        img(:src="item.cname")
+        img(:src='imageCDN+item.cname+".jpg"')
 
   .povCharacters
     .title 主要人物
     .povCharacter-wrapper
       .povCharacter-content(v-for='(item, index) in characters' :key='index' @click='focusCharacters(item)')
-        img(:src="  item.profile ")
+        img(:src='item.myProfile' )
+        //- img(:src='imageCDN + item.profile+"?imageView2/1/w/280/h/400/format/jpg/q/75|imageslim"' )
         .povCharacter-text
           .cname {{ item.cname }}
           .name {{ item.name }}
@@ -38,13 +39,28 @@ export default {
   },
   computed: {
     ...mapState({
-      'houses': state => state.vuessr.houses,
-      'characters': state => state.vuessr.characters,
-      'cities': state => state.vuessr.cities})
+      imageCDN: state => state.vuessr.imageCDN,
+      houses: state => state.vuessr.houses,
+      characters: state => state.vuessr.characters.map(item => {
+        if (item.profile.includes('http')) {
+          return {
+            myProfile: item.profile,
+            ...item
+          }
+        } else {
+          return {
+            myProfile: 'http://q15rsr3gt.bkt.clouddn.com/' + item.profile + '?imageView2/1/w/280/h/400/format/jpg/q/75|imageslim',
+            ...item
+          }
+        }
+      }),
+      cities: state => state.vuessr.cities
+    })
   },
   mounted () {
     console.log('houses', this.houses)
   },
+
   methods: {
     focusHouse (item) {
       console.log('itme', item.id)
@@ -59,7 +75,7 @@ export default {
       this.$router.push({
         path: '/character',
         query: {
-          id: item.id
+          id: item._id
         }
       })
     }
@@ -69,7 +85,6 @@ export default {
     this.$store.dispatch('vuessr/fetchCharacters')
     this.$store.dispatch('vuessr/fetchCities')
   }
-
 }
 </script>
 <style scoped lang='sass' src='../static/sass/index.sass'>

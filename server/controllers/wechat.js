@@ -9,7 +9,7 @@ export async function signature (ctx, next) {
   if (!url)ctx.throw(404)
 
   url = decodeURIComponent(url)
-  let params = await api.getSignatureAsync(url)
+  let params = await api.wechat.getSignatureAsync(url)
   ctx.body = {
     success: true,
     params: params
@@ -21,7 +21,7 @@ export async function redirect (ctx, next) {
   const scope = 'snsapi_userinfo'
   const {a, b} = ctx.query
   const params = `${a}_${b}`
-  const url = api.getAuthorizeURL(scope, target, params)
+  const url = api.wechat.getAuthorizeURL(scope, target, params)
 
   console.log('url', url)
   ctx.redirect(url)
@@ -35,7 +35,7 @@ export async function oauth (ctx, next) {
   const params = queryParse(urlObj.query)
   const code = params.code
   console.log('code', code)
-  const user = await api.getUserByCode(code)
+  const user = await api.wechat.getUserByCode(code)
 
   console.log(user)
 

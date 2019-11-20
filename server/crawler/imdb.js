@@ -5,6 +5,7 @@ import { resolve } from 'path'
 import { writeFileSync } from 'fs'
 
 const sleep = time => new Promise(resolve => setTimeout(resolve, time))
+const jsonPath = path => resolve(__dirname, '../database/json/', path)
 export const getIMDBCharacters = async () => {
   const options = {
     uri: 'http://www.imdb.com/title/tt0944947/fullcredits?ref_=tt_cl_sm#cast',
@@ -82,7 +83,7 @@ const fetchIMDbProfile = async url => {
   return src
 }
 export const getIMDbProfile = async () => {
-  const characters = require(resolve(__dirname, '../../wikiCharacters.json'))
+  const characters = require(resolve(__dirname, jsonPath('wikiCharacters.json')))
   for (let i = 0; i < characters.length; i++) {
     if (!characters[i].profile) {
       const url = `https://www.imdb.com/name/${characters[i].nmId}/`
@@ -91,7 +92,7 @@ export const getIMDbProfile = async () => {
       console.log('已经爬到' + src)
       characters[i].profile = src
       writeFileSync(
-        './imdbCharacters.json',
+        jsonPath('imdbCharacters.json'),
         JSON.stringify(characters, null, 2),
         'utf8'
       )
@@ -118,11 +119,11 @@ const fetchIMDbImage = async url => {
     }
   })
 
-  return images
+  return images.slice(0, 3)
 }
 
 export const getIMDbImages = async () => {
-  const characters = require(resolve(__dirname, '../../validCharacters.json'))
+  const characters = require(resolve(__dirname, jsonPath('validCharacters.json')))
   for (let i = 0; i < characters.length; i++) {
     if (!characters[i].images) {
       const url = `https://www.imdb.com/title/${characters[i].chId}/characters/${characters[i].nmId}`
@@ -131,7 +132,7 @@ export const getIMDbImages = async () => {
       console.log('已经爬到' + images)
       characters[i].images = images
       writeFileSync(
-        './fullCharacters.json',
+        jsonPath('fullCharacters.json'),
         JSON.stringify(characters, null, 2),
         'utf8'
       )

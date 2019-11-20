@@ -1,51 +1,36 @@
-import Router from 'koa-router'
 import reply from '../wechat/reply'
 import config from '../config'
 import wechatMiddle from '../wechat-lib/middleware'
-import { resolve } from 'path'
 
+// eslint-disable-next-line no-unused-vars
+import { controller, get, post } from '../decorator/router'
 import { signature, redirect, oauth } from '../controllers/wechat'
 
-export const router = app => {
-  const router = new Router()
-
-  router.all('/wechat-hear', wechatMiddle(config.wechat, reply))
-
-  router.get('/upload', async (ctx, next) => {
-    let mp = require('../wechat')
-    let client = mp.getWechat()
-
-    // const news = {
-    //   articles: [
-    //     {
-    //       title: 'ssr',
-    //       'thumb_media_id': '图文id',
-    //       'author': 'kuiwang',
-    //       'digest': '摘要',
-    //       'show_cover_pic': 1,
-    //       'content': '没有内容',
-    //       'content_source_url': '跳转地址',
-    //       'need_open_comment': 1,
-    //       'only_fans_can_comment': 1
-    //     }
-    //   ]
-    // }
-    // const permanentVideo = {
-    //   type: 'video',
-    //   description: '{{"title":"haha","introduction":"heihei"}}'
-    // }
-
-    const data = await client.handle(
-      'uploadMaterial',
-      'image',
-      resolve(__dirname, '../../ice.jpg'),
-      { type: 'image' }
-    )
-    console.log('5', data)
-  })
-  router.get('/wechat-signature', signature)
-  router.get('/wechat-redirect', redirect)
-  router.get('/wechat-oauth', oauth)
-  app.use(router.routes())
-  app.use(router.allowedMethods())
+@controller('')
+export class WechatController {
+  @get('/wechat-hear')
+  async wechatHear (ctx, next) {
+    const middle = wechatMiddle(config.wechat, reply)
+    const body = await middle(ctx, next)
+    ctx.body = body
+  }
+  @post('/wechat-hear')
+  async wechatPostHear (ctx, next) {
+    const middle = wechatMiddle(config.wechat, reply)
+    const body = await middle(ctx, next)
+    ctx.body = body
+  }
+  @get('/wechat-signature')
+  async wechatSignature (ctx, next) {
+    console.log(12)
+    await signature(ctx, next)
+  }
+  @get('/wechat-redirect')
+  async wechatRedirect (ctx, next) {
+    await redirect(ctx, next)
+  }
+  @get('/wechat-oauth')
+  async wechatOauth (ctx, next) {
+    await oauth(ctx, next)
+  }
 }

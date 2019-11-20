@@ -1,10 +1,10 @@
-import Router from 'koa-router'
-import reply from '../wechat/reply'
-import config from '../config'
-import wechatMiddle from '../wechat-lib/middleware'
+import Route from '../decorator/router'
+
 import { resolve } from 'path'
 
-import { signature, redirect, oauth } from '../controllers/wechat'
-
-const  r=path=>
-export const router = app => {}
+const r = path => resolve(__dirname, path)
+export const router = app => {
+  const apiPath = r('../routes')
+  const router = new Route(app, apiPath)
+  router.init()
+}

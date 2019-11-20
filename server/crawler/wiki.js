@@ -106,7 +106,7 @@ const getWikiDetail = async data => {
 
 // 根据IMDb.json这份数据，爬wiki上的人物数据，并且整合
 export const getWikiCharacters = async () => {
-  let data = require(resolve(__dirname, '../../fullCharacters.json'))
+  let data = require(resolve(__dirname, jsonPath('fullCharacters.json')))
   // data = [data[0], data[1]]
   data = R.map(getWikiId, data)
   data = await Promise.all(data)
@@ -116,7 +116,7 @@ export const getWikiCharacters = async () => {
   data = await Promise.all(data)
   console.log('获取wiki详细资料')
   console.log(data[0])
-  writeFileSync('./finalCharacters.json', JSON.stringify(data, null, 2), 'utf8')
+  writeFileSync(jsonPath('finalCharacters.json'), JSON.stringify(data, null, 2), 'utf8')
 }
 
 export const fetchImageFromIMDb = async () => {
@@ -286,4 +286,6 @@ export const getSwornMembers = () => {
     'utf8'
   )
 }
-getSwornMembers()
+// getWikiCharacters()
+fetchImageFromIMDb()
+// getSwornMembers()
