@@ -2926,6 +2926,16 @@ clone-deep@^4.0.1:
     kind-of "^6.0.2"
     shallow-clone "^3.0.0"
 
+co-body@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/co-body/-/co-body-6.0.0.tgz#965b9337d7f5655480787471f4237664820827e3"
+  integrity sha512-9ZIcixguuuKIptnY8yemEOuhb71L/lLf+Rl5JfJEUiDNJk0e02MBt7BPxR2GEh5mw8dPthQYR4jPI/BnS1MQgw==
+  dependencies:
+    inflation "^2.0.0"
+    qs "^6.5.2"
+    raw-body "^2.3.3"
+    type-is "^1.6.16"
+
 co@^4.6.0:
   version "4.6.0"
   resolved "https://registry.yarnpkg.com/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
@@ -3005,7 +3015,7 @@ commander@2.17.x:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
   integrity sha512-wPMUt6FnH2yzG95SA6mzjQOEKUU3aLaDEmzs1ti+1E9h+CsrZghRlqEM/EJ4KscsQVG8uNN4uVreUeT8+drlgg==
 
-commander@^2.18.0, commander@^2.19.0, commander@^2.20.0, commander@~2.20.3:
+commander@^2.18.0, commander@^2.19.0, commander@^2.20.0, commander@^2.9.0, commander@~2.20.3:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
   integrity sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==
@@ -3182,6 +3192,11 @@ copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
   integrity sha1-Z29us8OZl8LuGsOpJP1hJHSPV40=
+
+copy-to@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/copy-to/-/copy-to-2.0.1.tgz#2680fbb8068a48d08656b6098092bdafc906f4a5"
+  integrity sha1-JoD7uAaKSNCGVrYJgJK9r8kG9KU=
 
 core-js-compat@^3.1.1:
   version "3.3.5"
@@ -3435,6 +3450,11 @@ cssesc@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
+
+cssfilter@0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/cssfilter/-/cssfilter-0.0.10.tgz#c6d2672632a2e5c83e013e6864a42ce8defd20ae"
+  integrity sha1-xtJnJjKi5cg+AT5oZKQs6N79IK4=
 
 cssnano-preset-default@^4.0.7:
   version "4.0.7"
@@ -5262,6 +5282,11 @@ infer-owner@^1.0.3, infer-owner@^1.0.4:
   resolved "https://registry.yarnpkg.com/infer-owner/-/infer-owner-1.0.4.tgz#c4cefcaa8e51051c2a40ba2ce8a3d27295af9467"
   integrity sha512-IClj+Xz94+d7irH5qRyfJonOdfTzuDaifE6ZPWfx0N0+/ATZCbuTPq2prFl526urkQd90WyUKIh1DfBQ2hMz9A==
 
+inflation@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/inflation/-/inflation-2.0.0.tgz#8b417e47c28f925a45133d914ca1fd389107f30f"
+  integrity sha1-i0F+R8KPklpFEz2RTKH9OJEH8w8=
+
 inflight@^1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"
@@ -5878,6 +5903,14 @@ kind-of@^6.0.0, kind-of@^6.0.2:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-6.0.2.tgz#01146b36a6218e64e58f3a8d66de5d7fc6f6d051"
   integrity sha512-s5kLOcnH0XqDO+FvuaLX8DDjZ18CGFk7VygH40QoKPUQhW4e2rvM0rwUq0t8IQDOwYSeLK01U90OjzBTme2QqA==
+
+koa-bodyparser@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.yarnpkg.com/koa-bodyparser/-/koa-bodyparser-4.2.1.tgz#4d7dacb5e6db1106649b595d9e5ccb158b6f3b29"
+  integrity sha512-UIjPAlMZfNYDDe+4zBaOAUKYqkwAGcIU6r2ARf1UOXPAlfennQys5IiShaVeNf7KkVBlf88f2LeLvBFvKylttw==
+  dependencies:
+    co-body "^6.0.0"
+    copy-to "^2.0.1"
 
 koa-compose@^3.0.0:
   version "3.2.1"
@@ -8291,7 +8324,7 @@ qs@6.7.0:
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.7.0.tgz#41dc1a015e3d581f1621776be31afb2876a9b1bc"
   integrity sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
 
-qs@^6.4.0:
+qs@^6.4.0, qs@^6.5.2:
   version "6.9.1"
   resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.1.tgz#20082c65cb78223635ab1a9eaca8875a29bf8ec9"
   integrity sha512-Cxm7/SS/y/Z3MHWSxXb8lIFqgqBowP5JMlTUFyJN88y0SGQhVmZnqFK/PeuMX9LzUyWsqqhNxIyg0jlzq946yA==
@@ -10573,6 +10606,14 @@ xmlbuilder@~11.0.0:
   version "11.0.1"
   resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-11.0.1.tgz#be9bae1c8a046e76b31127726347d0ad7002beb3"
   integrity sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==
+
+xss@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/xss/-/xss-1.0.6.tgz#eaf11e9fc476e3ae289944a1009efddd8a124b51"
+  integrity sha512-6Q9TPBeNyoTRxgZFk5Ggaepk/4vUOYdOsIUYvLehcsIZTFjaavbVnsuAkLA5lIFuug5hw8zxcB9tm01gsjph2A==
+  dependencies:
+    commander "^2.9.0"
+    cssfilter "0.0.10"
 
 xtend@^4.0.0, xtend@~4.0.1:
   version "4.0.2"

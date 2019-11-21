@@ -14,4 +14,4 @@ const ProductSchema = new Schema({
 
 })
 
-mongoose.model('product', ProductSchema)
+mongoose.model('Product', ProductSchema)

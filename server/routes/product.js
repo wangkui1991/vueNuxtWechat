@@ -4,7 +4,7 @@ import R from 'ramda'
 // eslint-disable-next-line no-unused-vars
 import { controller, get, post, put, del } from '../decorator/router'
 
-@controller('/product')
+@controller('/admin')
 export class WikiController {
   @get('/products')
   async getProducts (ctx, next) {
@@ -61,12 +61,12 @@ export class WikiController {
   }
   @put('/products')
   async putProducts (ctx, next) {
-    let body = ctx.query.body
+    let body = ctx.request.body
     const {_id} = body
 
     if (!_id) return (ctx.body = { success: false, err: '_id is required' })
 
-    let product = api.product.getProduct(_id)
+    let product = await api.product.getProduct(_id)
 
     if (!product) {
       return (ctx.body = {
@@ -95,18 +95,22 @@ export class WikiController {
       }
     }
   }
-  @del('/products')
+  @del('/products/:_id')
   async delProducts (ctx, next) {
-    let body = ctx.query.body
-    const {_id} = body
+    const params = ctx.params
+    const {_id} = params
 
     if (!_id) return (ctx.body = { success: false, err: '_id is required' })
 
+    let product = await api.product.getProduct(_id)
+    if (!product) {
+      return (ctx.body = { success: false, err: 'product not exist' })
+    }
     try {
-      let product = await api.product.del(_id)
+      await api.product.del(product)
       ctx.body = {
-        success: true,
-        data: product
+        success: true
+
       }
     } catch (err) {
       ctx.body = {

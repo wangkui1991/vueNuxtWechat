@@ -26,6 +26,15 @@ class Services {
   focusCharacter (id) {
     return axios.get(`${baseUrl}/wiki/characters/${id}`)
   }
+  fetchProducts () {
+    return axios.get(`${baseUrl}/admin/products`)
+  }
+  fetchProduct (id) {
+    return axios.get(`${baseUrl}/admin/products/${id}`)
+  }
+  fetchUserAndOrders () {
+    return axios.get(`${baseUrl}/admin/user`)
+  }
 }
 
 export default new Services()
