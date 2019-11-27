@@ -32,7 +32,15 @@ module.exports = {
   css: [ {
     src: 'static/sass/base.sass',
     lang: 'sass?indentedSyntax=true'
+  },
+  {
+    src: 'swiper/dist/css/swiper.css'
   } ],
+  plugins: [
+    { src: '@/plugins/swiper.js', ssr: false },
+    { src: '@/plugins/flexible.js', ssr: false }
+
+  ],
   /*
    ** Customize the progress-bar color
    */

@@ -3,7 +3,6 @@ import xss from 'xss'
 import R from 'ramda'
 // eslint-disable-next-line no-unused-vars
 import { controller, get, post, put, del } from '../decorator/router'
-
 @controller('/admin')
 export class WikiController {
   @get('/products')

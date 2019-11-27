@@ -14,6 +14,10 @@ const bucket = config.qiniu.bucket
 // var bucketManager = new qiniu.rs.BucketManager(mac, config)
 
 //  q15ipgb8x.bkt.clouddn.com
+export const uptoken = (key) => {
+  console.log('key', key)
+  return new qiniu.rs.PutPolicy(`${bucket}:${key}`).token()
+}
 
 // 因为七牛抓取互联网资源这个 node SDK 有坑，所以直接用 qshell，所以使用前需要全局安装
 // npm i qshell -g

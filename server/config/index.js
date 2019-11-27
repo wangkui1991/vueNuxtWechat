@@ -13,6 +13,6 @@ export default {
   qiniu: {
     AK: 'YpXiCMCIwZYfKsvhPiTImKu2lsLFSvMPER4THTDF',
     SK: 'nknuBGCy6p1CKalyNSmw15p79Rv1hP4bXIkOM7AE',
-    bucket: 'wholeren'
+    bucket: 'dadafastrun'
   }
 }

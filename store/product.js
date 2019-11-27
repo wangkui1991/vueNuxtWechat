@@ -5,8 +5,9 @@ const product = {
   state: () => {
     return {
       products: [],
-      currentProduct: {}
-
+      currentProduct: {},
+      shoppingScroll: 0,
+      focusProduct: {}
     }
   },
   getters: {},
@@ -16,6 +17,12 @@ const product = {
     },
     SET_CURRENT_PRODUCTS: (state, product) => {
       state.currentProduct = product
+    },
+    SET_SHOPPING_SCROLL: (state, payload) => {
+      state.shoppingScroll = payload
+    },
+    SET_FOCUS_PRODUCT: (state, payload) => {
+      state.focusProduct = payload
     }
 
   },
@@ -50,6 +57,14 @@ const product = {
       await axios.delete(`/admin/products/${product._id}`)
       let res = await dispatch('fetchProducts')
       return res.data.data
+    },
+    async focusProduct ({state, commit}, _id) {
+      if (_id === state.focusProduct._id) return
+      const res = await axios.get(`/admin/products/${_id}`)
+      console.log('res', res)
+      commit('SET_FOCUS_PRODUCT', res.data.data)
+      console.log('ress,', state.focusProduct)
+      return res
     }
 
   }
