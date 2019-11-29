@@ -29,6 +29,7 @@ export default function (opts, reply) {
       const message = util.formatMessage(content.xml)
 
       ctx.weixin = message
+
       await reply.apply(ctx, [ctx, next])
       const replyBody = ctx.body
 

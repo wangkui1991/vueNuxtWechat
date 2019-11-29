@@ -13,6 +13,12 @@
     li {{auth.sex}}
 </template>
 <script>
+function getUrlParam (param) {
+  const reg = new RegExp('(^|&)' + param + '=([^&]*)(&|$)')
+  const result = window.location.search.substr(1).match(reg)
+  return result ? decodeURIComponent(result[2]) : null
+}
+
 // import { mapState } from 'vuex'
 export default {
   asyncData ({ req }) {
@@ -22,7 +28,7 @@ export default {
   },
   head () {
     return {
-      title: 'loading'
+      title: '测试'
     }
   },
   data () {
@@ -30,18 +36,23 @@ export default {
       auth: {}
     }
   },
-  beforeMount () {
+  async beforeMount () {
     // const wx = window.wx
     const url = window.location.href
+    const {data} = await this.$store.dispatch('wechat/getWechatOAuth', url)
+    console.log('wangkui', data)
 
-    this.$store
-      .dispatch('wechat/getUserByOAuth', encodeURIComponent(url))
-      .then(res => {
-        console.log(res, res)
-        if (res.data.success) {
-          this.auth = res.data.data
-        }
-      })
+    if (data.success) {
+      await this.$store.dispatch('wechat/setAuthUser', data.data)
+      const paramsArr = getUrlParam('state').split('_')
+      const visit2 = paramsArr.length === 1 ? `/${paramsArr[0]}` : `/${paramsArr[0]}?id=${paramsArr[1]}`
+
+  // `    const visit = '/' + getUrlParam('state')`
+      console.log(2, 'visit2', this.$router)
+      this.$router.replace(visit2)
+    } else {
+      throw new Error('用户信息获取失败')
+    }
   }
 }
 </script>

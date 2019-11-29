@@ -11,14 +11,12 @@ export class WechatController {
   @get('/wechat-hear')
   async wechatHear (ctx, next) {
     const middle = wechatMiddle(config.wechat, reply)
-    const body = await middle(ctx, next)
-    ctx.body = body
+    await middle(ctx, next)
   }
   @post('/wechat-hear')
   async wechatPostHear (ctx, next) {
     const middle = wechatMiddle(config.wechat, reply)
-    const body = await middle(ctx, next)
-    ctx.body = body
+    await middle(ctx, next)
   }
   @get('/wechat-signature')
   async wechatSignature (ctx, next) {

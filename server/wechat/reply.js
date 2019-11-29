@@ -6,7 +6,7 @@ const tip =
   '给我音频我也给你音频\n' +
   '给我视频我也给你视频\n' +
   '给我数字1我会重设菜单拦喔，重新关注可见\n' +
-  '事件我也监听了\n';
+  '事件我也监听了\n'
 
 let mp = require('../wechat')
 let client = mp.getWechat()
@@ -24,7 +24,7 @@ export default async (ctx, next) => {
     } else if (message.Event === 'view') {
       ctx.body = message.EventKey + message.MenuId
     } else if (message.Event === 'pic_sysphoto') {
-      ctx.body = message.Count + 'photo sent';
+      ctx.body = message.Count + 'photo sent'
     }
   } else if (message.MsgType === 'text') {
     let data = message.Content

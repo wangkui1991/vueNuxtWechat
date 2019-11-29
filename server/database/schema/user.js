@@ -21,6 +21,8 @@ const UserSchema = new Schema({
   city: String,
   gender: String,
   email: String,
+  headimgurl: String,
+  avatarUrl: String,
   password: String,
   hashed_password: String,
   loginAttempts: {

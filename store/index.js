@@ -1,13 +1,18 @@
 import axios from 'axios'
+import createLogger from 'vuex/dist/logger'
+const debug = process.env.NODE_ENV !== 'production'
 const vuex = {
   state: () => {
     return {
 
-      user: null
+      user: null,
+      authUser: null,
+      payments: []
 
     }
   },
   getters: {},
+  plugins: debug ? [createLogger()] : [],
   mutations: {
 
     SET_USER: (state, payload) => {
@@ -42,9 +47,16 @@ const vuex = {
         }
       }
     },
+
     async logout ({commit}) {
       await axios.post('/user/logout')
       commit('SET_USER', null)
+    },
+    async fetchPayments ({ state }) {
+      let { data } = await axios.get('/api/payments')
+      console.log(data)
+      state.payments = data
+      return data
     }
 
   }

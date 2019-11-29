@@ -6,10 +6,10 @@ class Services {
   getWechatSignature (url) {
     return axios.get(`${baseUrl}/wechat-signature?url=${url}`)
   }
-  getUserByOAuth (url) {
-    console.log('url2', url)
-    return axios.get(`${baseUrl}/wechat-oauth?url=${url}`)
+  getWechatOAuth (url) {
+    return axios.get(`${baseUrl}/wechat-oauth?url=${encodeURIComponent(url)}`)
   }
+
   fetchHouses () {
     return axios.get(`${baseUrl}/wiki/houses`)
   }
