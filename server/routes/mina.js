@@ -22,7 +22,7 @@ export class MinaController {
     const {code, userInfo} = ctx.query
     const minaUser = await openidAndSessionKey(code)
     let user = await User.findOne({
-      unionid
+      unionid: minaUser.unionId
     }).exec()
 
     if (!user) {
