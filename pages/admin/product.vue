@@ -90,6 +90,7 @@ import Uploader from 'qiniu-web-uploader'
 import vSnackbar from '../../components/snackbar'
 
 export default {
+  middleware: 'auth',
   layout: 'admin',
   head () {
     return {

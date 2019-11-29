@@ -1,10 +1,12 @@
 import api from '../api'
 import xss from 'xss'
 import R from 'ramda'
+
 // eslint-disable-next-line no-unused-vars
 import { controller, get, post, put, del } from '../decorator/router'
+
 @controller('/admin')
-export class WikiController {
+export class ProductController {
   @get('/products')
   async getProducts (ctx, next) {
     let {limit = 50} = ctx.query

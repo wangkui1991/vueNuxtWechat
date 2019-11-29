@@ -8,6 +8,7 @@ const product = {
       currentProduct: {},
       shoppingScroll: 0,
       focusProduct: {}
+
     }
   },
   getters: {},
@@ -27,6 +28,7 @@ const product = {
 
   },
   actions: {
+
     async fetchProducts ({ commit }) {
       console.log(54)
       const res = await Service.fetchProducts()

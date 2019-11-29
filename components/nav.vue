@@ -1,5 +1,5 @@
 <template lang="pug">
-  nav#nav
+  nav#nav(v-if='navVisible')
     div 首页
  
 </template>

@@ -1,6 +1,7 @@
 import Router from 'koa-router'
 import { resolve } from 'path'
 import _ from 'lodash'
+import R from 'Ramda'
 import glob from 'glob'
 export let routersMap = new Map()
 export const symbolPrefix = Symbol('prefix')
@@ -62,3 +63,23 @@ export const del = path =>
     method: 'del',
     path: path
   })
+export const required = rules => convert(async(ctx, next) => {
+  let errors = []
+  const passRules = R.forEachObjIndexed(
+    (value, key) => {
+      errors = R.filter(i => !R.has(i, ctx.request[key]))(value)
+    }
+  )
+  passRules(rules)
+  if (errors.length) ctx.throw(412, `${errors.join(', ')}参数缺失`)
+  await next()
+})
+
+export const convert = middleware => (...args) => decorate(args, middleware)
+
+const decorate = (args, middleware) => {
+  let [target, key, descriptor] = args
+  target[key] = isArray(target[key])
+  target[key].unshift(middleware)
+  return descriptor
+}
