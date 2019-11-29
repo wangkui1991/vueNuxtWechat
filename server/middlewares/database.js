@@ -2,7 +2,7 @@ import fs from 'fs'
 import mongoose from 'mongoose'
 import config from '../config'
 import { resolve } from 'path'
-import R from 'ramda'
+import * as R from 'ramda'
 const models = resolve(__dirname, '../database/schema')
 
 const jsonPath = path => resolve(__dirname, '../database/json/', path)

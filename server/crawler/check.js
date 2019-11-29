@@ -1,5 +1,5 @@
 import { resolve } from 'path'
-import R from 'ramda'
+import * as R from 'ramda'
 import { find } from 'lodash'
 import { writeFileSync } from 'fs'
 

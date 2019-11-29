@@ -1,8 +1,7 @@
 import request from 'request-promise'
-import formstream from 'formstream'
 import fs from 'fs'
-import path from 'path'
-import * as _ from 'lodash'
+
+import _ from 'lodash'
 import { sign } from './util'
 
 const base = 'https://api.weixin.qq.com/cgi-bin/'

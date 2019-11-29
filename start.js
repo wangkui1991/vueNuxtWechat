@@ -1,18 +1,23 @@
 const { resolve } = require('path')
 const r = path => resolve(__dirname, path)
-require('babel-core/register')({
-  presets: ['stage-3', 'latest-node'],
+require('@babel/register')({
+  presets: ['latest-node'],
   plugins: [
-    'transform-decorators-legacy',
+    ['@babel/plugin-proposal-decorators', { 'legacy': true }],
     [
-      'module-alias',
-      [
-        { src: r('./server'), expose: '~' },
-        { src: r('./server/database'), expose: 'database' }
-      ]
+      'module-resolver',
+
+      {
+        root: ['./'],
+        alias: {
+          '~': './server',
+          'database': './server/database'
+        }
+      }
+
     ]
   ]
 })
 
-require('babel-polyfill')
+require('@babel/polyfill')
 require('./server')

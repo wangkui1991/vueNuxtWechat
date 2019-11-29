@@ -1,6 +1,6 @@
 import cheerio from 'cheerio'
 import rp from 'request-promise'
-import R from 'ramda'
+import * as R from 'ramda'
 import { resolve } from 'path'
 import { writeFileSync } from 'fs'
 

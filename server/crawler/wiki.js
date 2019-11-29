@@ -1,5 +1,5 @@
 import rp from 'request-promise'
-import R from 'ramda'
+import * as R from 'ramda'
 import _ from 'lodash'
 import { writeFileSync } from 'fs'
 import { resolve } from 'path'

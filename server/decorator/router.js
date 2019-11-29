@@ -1,7 +1,7 @@
 import Router from 'koa-router'
 import { resolve } from 'path'
 import _ from 'lodash'
-import R from 'Ramda'
+import * as R from 'ramda'
 import glob from 'glob'
 export let routersMap = new Map()
 export const symbolPrefix = Symbol('prefix')

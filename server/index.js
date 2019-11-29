@@ -1,6 +1,6 @@
 import Koa from 'koa'
 import { Nuxt, Builder } from 'nuxt'
-import R from 'ramda'
+import * as R from 'ramda'
 import { resolve } from 'path'
 
 let config = require('../nuxt.config.js')
