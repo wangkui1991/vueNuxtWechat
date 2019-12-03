@@ -1,5 +1,5 @@
 export default {
-  db: 'mongodb://127.0.0.1/wechat',
+  db: 'mongodb://127.0.0.1:27018/wechat',
   wechat: {
     appID: 'wx87043d3cc5e18213',
     appSecret: '3d6f510195b496512846f6875b60886b',

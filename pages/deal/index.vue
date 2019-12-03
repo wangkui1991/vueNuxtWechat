@@ -28,6 +28,31 @@
 
     .focus-goods-footer
         span(@click='payHandle') 购买
+    transition(name='slide-top')
+      .focus-goods-pay(v-if='showInfo')
+        .focus-goods-pay_header
+          span 准备购买
+          span(@click='showInfo=false') 取消
+        .focus-goods-pay_body
+          .focus-item
+            img(:src='imageCDN+product.images[0]')
+            div
+              p {{product.title}}
+              p 价格 ¥ {{product.price}}
+          .focus-item
+            span 收件人
+            input(v-model.trim='info.name' placeholder='你的名字')
+          .focus-item
+            span 电话
+            input(v-model.trim='info.phoneNumber' type='tel' placeholder='你的电话')
+            
+          .focus-item
+            span 地址
+            input(v-model.trim='info.address' type='tel' placeholder='收获地址是？')
+        .focus-goods-pay_footer(@click='handPayment') 确认支付
+    transition(name='fade')
+      span.model
+
 </template>
 
 <script>
@@ -35,7 +60,7 @@ import cell from '../../components/cell.vue'
 import { mapState } from 'vuex'
 
 export default {
-  // middleware: 'wechat-auth',
+  middleware: 'wechat-auth',
   head () {
     return {
       title: '手办详情'
