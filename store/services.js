@@ -33,7 +33,15 @@ class Services {
     return axios.get(`${baseUrl}/admin/products/${id}`)
   }
   fetchUserAndOrders () {
-    return axios.get(`${baseUrl}/admin/user`)
+    return axios.get(`${baseUrl}/user/user`)
+  }
+  createOrder ({ productId, name, address, phoneNumber }) {
+    return axios.post(`${baseUrl}/wechat-pay`, {
+      productId,
+      name,
+      address,
+      phoneNumber
+    })
   }
 }
 

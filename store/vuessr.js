@@ -3,7 +3,7 @@ import Service from './services'
 const vuessr = {
   state: () => {
     return {
-      imageCDN: 'http://q15rsr3gt.bkt.clouddn.com/',
+      imageCDN: 'http://qiniu.dadafastrun.com/',
       houses: [],
       characters: [],
       cities: [],
@@ -13,6 +13,9 @@ const vuessr = {
   },
   getters: {},
   mutations: {
+    SET_IMAGECDN: (state, imageCDN) => {
+      state.imageCDN = imageCDN
+    },
     SET_HOUSES: (state, houses) => {
       state.houses = houses
     },

@@ -1,9 +1,11 @@
 <template lang="pug">
 .container
   .focusCharacters-header
-    img.focusCharacters-header-bg(v-if='character.images', :src="imageCDN + character.images[character.images.length - 1] + '?imageView2/1/w/375/h/230/format/jpg/q/90|imageslim'")
+    img.focusCharacters-header-bg(v-if='character.images&&!character.images[character.images.length-1].includes("http")', :src="imageCDN + character.images[character.images.length - 1] + '?imageView2/1/w/375/h/230/format/jpg/q/90|imageslim'")
+    img.focusCharacters-header-bg(v-if='character.images&&character.images[character.images.length-1].includes("http")', :src="character.images[character.images.length - 1] ")
     .focusCharacters-media
-      img(v-if='character.profile', :src="imageCDN + character.profile + '?imageView2/1/w/280/h/400/format/jpg/q/75|imageslim'")
+      img(v-if='!character.profile.includes("http")', :src="imageCDN + character.profile + '?imageView2/1/w/280/h/400/format/jpg/q/75|imageslim'")
+      img(v-if='character.profile', :src="character.profile ")
       .focusCharacters-text
         .names
           p.cname {{ character.cname }}
@@ -29,7 +31,7 @@
 import { mapState } from 'vuex'
 
 export default {
-//   middleware: 'wechat-auth',
+  middleware: 'wechat-auth',
   transition: {
     name: 'slide-left'
   },

@@ -121,4 +121,13 @@ export class ProductController {
       }
     }
   }
+  @get('payments')
+  async getPayments (ctx, next) {
+    const data = await api.payment.fetchPayments()
+
+    ctx.body = {
+      success: true,
+      data: data
+    }
+  }
 }

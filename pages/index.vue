@@ -50,16 +50,13 @@ export default {
           }
         } else {
           return {
-            myProfile: 'http://q15rsr3gt.bkt.clouddn.com/' + item.profile + '?imageView2/1/w/280/h/400/format/jpg/q/75|imageslim',
+            myProfile: 'http://qiniu.dadafastrun.com/' + item.profile + '?imageView2/1/w/280/h/400/format/jpg/q/75|imageslim',
             ...item
           }
         }
       }),
       cities: state => state.vuessr.cities
     })
-  },
-  mounted () {
-    console.log('houses', this.houses)
   },
 
   methods: {

@@ -1,5 +1,4 @@
-const { resolve } = require('path')
-const r = path => resolve(__dirname, path)
+
 require('@babel/register')({
   presets: ['latest-node'],
   plugins: [
@@ -10,7 +9,7 @@ require('@babel/register')({
       {
         root: ['./'],
         alias: {
-          '~': './server',
+          '~': './',
           'database': './server/database'
         }
       }

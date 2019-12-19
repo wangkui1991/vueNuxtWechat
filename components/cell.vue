@@ -9,7 +9,7 @@
 export default {
   props: {
     title: String,
-    content: String,
+    content: Number,
     iconName: String
   }
 }

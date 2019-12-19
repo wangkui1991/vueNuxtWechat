@@ -67,8 +67,12 @@ const product = {
       commit('SET_FOCUS_PRODUCT', res.data.data)
       console.log('ress,', state.focusProduct)
       return res
-    }
+    },
+    async createOrder ({state}, obj) {
+      const { data } = Service.createOrder(obj)
 
+      return data
+    }
   }
 }
 

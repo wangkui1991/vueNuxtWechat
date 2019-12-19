@@ -51,6 +51,7 @@ export default {
       openSnackbar: false
     }
   },
+
   methods: {
     async login () {
       let {email, password} = this.user

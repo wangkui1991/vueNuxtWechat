@@ -10,5 +10,10 @@ module.exports = {
     'html'
   ],
   rules: {},
-  globals: {}
+  globals: {},
+  "parserOptions": {
+    "ecmaFeatures": {
+      "legacyDecorators": true
+    }
+  }
 }

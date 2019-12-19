@@ -15,7 +15,6 @@ export async function getSignatureAsync (url) {
 }
 
 export function getAuthorizeURL (...args) {
-  console.log(12)
   const oauth = getOAuth()
   return oauth.getAuthorizeURL(...args)
 }
@@ -34,7 +33,7 @@ export async function getUserByCode (code) {
   console.log('data', data, existUser)
   if (!existUser) {
     let newUser = new User({
-      openid: [data.openid],
+      openid: data.openid,
       unionid: data.unionid,
       nickname: user.nickname,
       address: user.address,
@@ -47,5 +46,14 @@ export async function getUserByCode (code) {
     await newUser.save()
   }
 
-  return user
+  return {
+    nickname: user.nickname,
+    province: user.province,
+    country: user.country,
+    city: user.city,
+    openid: user.openid,
+    unionid: user.unionid,
+    headimgurl: user.headimgurl,
+    gender: user.sex
+  }
 }

@@ -3,8 +3,8 @@ import config from '../config'
 import wechatMiddle from '../wechat-lib/middleware'
 
 // eslint-disable-next-line no-unused-vars
-import { controller, get, post } from '../decorator/router'
-import { signature, redirect, oauth } from '../controllers/wechat'
+import { controller, get, post, required } from '../decorator/router'
+import { signature, redirect, oauth, wechatPay } from '../controllers/wechat'
 
 @controller('')
 export class WechatController {
@@ -30,5 +30,10 @@ export class WechatController {
   @get('/wechat-oauth')
   async wechatOauth (ctx, next) {
     await oauth(ctx, next)
+  }
+  @post('/wechat-pay')
+  @required({body:['productId', 'name', 'phoneNumber', 'address']})
+  async createOrder (ctx, next) {
+    await wechatPay(ctx, next)
   }
 }

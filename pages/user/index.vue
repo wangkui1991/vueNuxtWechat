@@ -1,31 +1,32 @@
 <template lang="pug">
 .container
-  .user
+  .user(v-if='user')
     .user-header
-      .user-header-text {{ authUser.nickname }}
-      img(:src="authUser.avatarUrl")
+      .text {{user.nickname}}
+      img(:src='user.headimgurl')
     .user-address
-      cell(title='收获地址' iconName='place')
-      .user-content {{ authUser.address }}
+      cell(title='收货地址')
+      .user-content {{user.address}}
     .user-phone
-      cell(title='电话' iconName='phone_iphone')
-      .user-content {{ authUser.phoneNumber }}
+      cell(title='电话')
+      .user-content {{user.phoneNumber}}
     .user-name
-      cell(title='姓名' iconName='account_box')
-      .user-content {{ authUser.name }}
-    .user-order
-      cell(title='我的订单' iconName='list')
-      .user-order-item(v-for='(item, index) in payments' :key='index')
-        img(:src='imageCDN + item.product.images[0]')
+      cell(title='姓名')
+      .user-content {{user.name}}
+
+    .user-order(v-if='user.orders')
+      cell(title='我的订单')
+      .user-order-items(v-for='item in user.orders')
+        img(:src='imageCDN + item.product.images[0] + "?imageView2/1/format/jpg/q/75/imageslim"')
         .user-order-intro
-          .title {{ item.product.title }}
-          .content {{ item.product.intro }}
+          .title {{item.product.title}}
+          .content {{item.product.intro}}
         .user-order-price
-          span ¥{{ item.product.price.toFixed(2) }}
+          span ￥{{item.product.price}}
 </template>
 
 <script>
-import cell from '../../components/cell.vue'
+import cell from '~/components/cell.vue'
 import { mapState } from 'vuex'
 
 export default {
@@ -35,21 +36,24 @@ export default {
       title: '个人中心'
     }
   },
+
   computed: {
-    ...mapState([
-      'authUser',
-      'imageCDN',
-      'payments'
-    ])
+    ...mapState({
+      imageCDN: state => state.vuessr.imageCDN,
+      user: state => state.wechat.authUser
+    })
   },
+
   methods: {},
   beforeCreate () {
-    this.$store.dispatch('fetchPayments')
+    this.$store.dispatch('fetchUserAndOrders')
   },
+
   components: {
     cell
   }
 }
+
 </script>
 
-<style lang="sass" scoped src='../../static/sass/user.sass'></style>
+<style scoped lang='sass' src='~/static/sass/user.sass'></style>

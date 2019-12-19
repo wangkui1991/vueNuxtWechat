@@ -40,4 +40,13 @@ export class ProductController {
       success: true
     }
   }
+  @get('user')
+  async dbUsers (ctx, next) {
+    const res = await api.user.dbUsers(ctx, next)
+
+    ctx.body = {
+      data: res[0],
+      success: true
+    }
+  }
 }

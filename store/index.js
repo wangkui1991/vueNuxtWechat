@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Services from './services'
 import createLogger from 'vuex/dist/logger'
 const debug = process.env.NODE_ENV !== 'production'
 const vuex = {
@@ -6,19 +7,18 @@ const vuex = {
     return {
 
       user: null,
-      authUser: null,
+
       payments: []
 
     }
   },
   getters: {},
-  plugins: debug ? [createLogger()] : [],
+  // plugins: debug ? [createLogger()] : [],
   mutations: {
 
     SET_USER: (state, payload) => {
       state.user = payload
     }
-
   },
   actions: {
     nuxtServerInit ({ commit }, { req }) {
@@ -29,7 +29,6 @@ const vuex = {
           nickname,
           avatarUrl
         }
-
         commit('SET_USER', user)
       }
     },
@@ -47,16 +46,21 @@ const vuex = {
         }
       }
     },
-
     async logout ({commit}) {
       await axios.post('/user/logout')
       commit('SET_USER', null)
     },
     async fetchPayments ({ state }) {
-      let { data } = await axios.get('/api/payments')
+      let { data } = await axios.get('/admin/payments')
       console.log(data)
       state.payments = data
       return data
+    },
+    async fetchUserAndOrders ({ state, commit }) {
+      const res = await Services.fetchUserAndOrders()
+      commit('SET_USER', res.data.data)
+
+      return res
     }
 
   }
